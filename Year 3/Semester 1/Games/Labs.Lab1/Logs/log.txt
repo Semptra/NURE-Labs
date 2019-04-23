@@ -1,0 +1,21 @@
+2019-04-23 09:57:13.286 +02:00 [INF] Parsing file [JSON\2018-01-30-2.json]
+2019-04-23 09:57:14.650 +02:00 [INF] Found [113647] JObjects
+2019-04-23 09:57:15.039 +02:00 [INF] Inserted [1658] entities of type [User]
+2019-04-23 09:57:15.620 +02:00 [FTL] Fatal exception: {0}
+System.Data.SqlClient.SqlException (0x80131904): The MERGE statement conflicted with the FOREIGN KEY constraint "FK_GameStart_Users_UserId". The conflict occurred in database "GameDataDb", table "dbo.Users", column 'Id'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.EndExecuteNonQueryInternal(IAsyncResult asyncResult)
+   at System.Data.SqlClient.SqlCommand.EndExecuteNonQuery(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlCommandAsync(DatabaseFacade databaseFacade, RawSqlString sql, IEnumerable`1 parameters, CancellationToken cancellationToken)
+   at EFCore.BulkExtensions.SqlBulkOperation.MergeAsync[T](DbContext context, IList`1 entities, TableInfo tableInfo, OperationType operationType, Action`1 progress)
+   at EFCore.BulkExtensions.SqlBulkOperation.MergeAsync[T](DbContext context, IList`1 entities, TableInfo tableInfo, OperationType operationType, Action`1 progress)
+   at Labs.Lab1.Services.DbParser.ParseJsonFile(String file) in D:\Projects\University\Labs\Labs.Lab1\Services\DbParser.cs:line 65
+   at Labs.Lab1.Services.DbParser.ParseJsonsToDatabaseAsync() in D:\Projects\University\Labs\Labs.Lab1\Services\DbParser.cs:line 34
+ClientConnectionId:92b9f180-9e4f-43f4-aec9-683e23906bdd
+Error Number:547,State:0,Class:16
