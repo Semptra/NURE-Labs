@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Lab2.Web.Models.Animal>
+
+@{
+    ViewBag.Title = "Animals";
+}
+
+<h2>AnimalsListView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AnimalsCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "AnimalsEdit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "AnimalsDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
