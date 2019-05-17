@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c4a082e64174124a220b2f0bdc3ed66" Name="Diagram1">
+        <EntityTypeShape EntityType="GameDataDbModel.CurrencyBuy" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataDbModel.GameStart" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataDbModel.ItemBuy" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataDbModel.StageEnd" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataDbModel.StageStart" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDataDbModel.User" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="GameDataDbModel.FK_CurrencyBuy_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataDbModel.FK_GameStart_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataDbModel.FK_ItemBuy_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataDbModel.FK_StageEnd_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDataDbModel.FK_StageStart_Users_UserId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,434 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GameDataDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CurrencyBuy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Price" Type="real" Nullable="false" />
+          <Property Name="Income" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameStart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemBuy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Item" Type="nvarchar(max)" />
+          <Property Name="Price" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StageEnd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Stage" Type="int" Nullable="false" />
+          <Property Name="Time" Type="int" Nullable="false" />
+          <Property Name="Win" Type="bit" Nullable="false" />
+          <Property Name="Income" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StageStart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Stage" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="Age" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CurrencyBuy_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CurrencyBuy" Type="Self.CurrencyBuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyBuy">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameStart_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameStart" Type="Self.GameStart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameStart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemBuy_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemBuy" Type="Self.ItemBuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemBuy">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StageEnd_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StageEnd" Type="Self.StageEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageEnd">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StageStart_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StageStart" Type="Self.StageStart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageStart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameDataDbModelStoreContainer">
+          <EntitySet Name="CurrencyBuy" EntityType="Self.CurrencyBuy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameStart" EntityType="Self.GameStart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemBuy" EntityType="Self.ItemBuy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StageEnd" EntityType="Self.StageEnd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StageStart" EntityType="Self.StageStart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CurrencyBuy_Users_UserId" Association="Self.FK_CurrencyBuy_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CurrencyBuy" EntitySet="CurrencyBuy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameStart_Users_UserId" Association="Self.FK_GameStart_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GameStart" EntitySet="GameStart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemBuy_Users_UserId" Association="Self.FK_ItemBuy_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ItemBuy" EntitySet="ItemBuy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StageEnd_Users_UserId" Association="Self.FK_StageEnd_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StageEnd" EntitySet="StageEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StageStart_Users_UserId" Association="Self.FK_StageStart_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StageStart" EntitySet="StageStart" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GameDataDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CurrencyBuy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Single" Nullable="false" />
+          <Property Name="Income" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CurrencyBuy_Users_UserId" FromRole="CurrencyBuy" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="GameStart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_GameStart_Users_UserId" FromRole="GameStart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ItemBuy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Item" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Single" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ItemBuy_Users_UserId" FromRole="ItemBuy" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="StageEnd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Stage" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Int32" Nullable="false" />
+          <Property Name="Win" Type="Boolean" Nullable="false" />
+          <Property Name="Income" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_StageEnd_Users_UserId" FromRole="StageEnd" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="StageStart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Stage" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_StageStart_Users_UserId" FromRole="StageStart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CurrencyBuys" Relationship="Self.FK_CurrencyBuy_Users_UserId" FromRole="Users" ToRole="CurrencyBuy" />
+          <NavigationProperty Name="GameStarts" Relationship="Self.FK_GameStart_Users_UserId" FromRole="Users" ToRole="GameStart" />
+          <NavigationProperty Name="ItemBuys" Relationship="Self.FK_ItemBuy_Users_UserId" FromRole="Users" ToRole="ItemBuy" />
+          <NavigationProperty Name="StageEnds" Relationship="Self.FK_StageEnd_Users_UserId" FromRole="Users" ToRole="StageEnd" />
+          <NavigationProperty Name="StageStarts" Relationship="Self.FK_StageStart_Users_UserId" FromRole="Users" ToRole="StageStart" />
+        </EntityType>
+        <Association Name="FK_CurrencyBuy_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CurrencyBuy" Type="Self.CurrencyBuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurrencyBuy">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameStart_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameStart" Type="Self.GameStart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameStart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemBuy_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemBuy" Type="Self.ItemBuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemBuy">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StageEnd_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StageEnd" Type="Self.StageEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageEnd">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StageStart_Users_UserId">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StageStart" Type="Self.StageStart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StageStart">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameDataDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CurrencyBuys" EntityType="Self.CurrencyBuy" />
+          <EntitySet Name="GameStarts" EntityType="Self.GameStart" />
+          <EntitySet Name="ItemBuys" EntityType="Self.ItemBuy" />
+          <EntitySet Name="StageEnds" EntityType="Self.StageEnd" />
+          <EntitySet Name="StageStarts" EntityType="Self.StageStart" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_CurrencyBuy_Users_UserId" Association="Self.FK_CurrencyBuy_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CurrencyBuy" EntitySet="CurrencyBuys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameStart_Users_UserId" Association="Self.FK_GameStart_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GameStart" EntitySet="GameStarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemBuy_Users_UserId" Association="Self.FK_ItemBuy_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ItemBuy" EntitySet="ItemBuys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StageEnd_Users_UserId" Association="Self.FK_StageEnd_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StageEnd" EntitySet="StageEnds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StageStart_Users_UserId" Association="Self.FK_StageStart_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StageStart" EntitySet="StageStarts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GameDataDbModelStoreContainer" CdmEntityContainer="GameDataDbEntities">
+          <EntitySetMapping Name="CurrencyBuys">
+            <EntityTypeMapping TypeName="GameDataDbModel.CurrencyBuy">
+              <MappingFragment StoreEntitySet="CurrencyBuy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameStarts">
+            <EntityTypeMapping TypeName="GameDataDbModel.GameStart">
+              <MappingFragment StoreEntitySet="GameStart">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemBuys">
+            <EntityTypeMapping TypeName="GameDataDbModel.ItemBuy">
+              <MappingFragment StoreEntitySet="ItemBuy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StageEnds">
+            <EntityTypeMapping TypeName="GameDataDbModel.StageEnd">
+              <MappingFragment StoreEntitySet="StageEnd">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Win" ColumnName="Win" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StageStarts">
+            <EntityTypeMapping TypeName="GameDataDbModel.StageStart">
+              <MappingFragment StoreEntitySet="StageStart">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GameDataDbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
